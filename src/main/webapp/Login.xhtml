@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+	<h:head>
+		<title>Iniciar Sesión</title>
+		<h:outputScript library="tema1" name="js/eventos.js" />
+		<h:outputStylesheet library="tema1" name="css/login.css" />
+	</h:head>
+	<h:body styleClass="bodyLogin">
+	<div class="bodyPanel">
+		<p:growl id="growl" showDetail="false" life="3000" />
+		<center>
+			<p:card style="width: 18rem; margin-bottom: 1em;height:15rem;" styleClass="coLogin">
+				<div class="car">
+					<h:outputLink id="loginLink" value="javascript:void(0)"
+						onclick="PF('dlg').show();" title="Iniciar Sesión" style="text-decoration:none;">
+						<h:graphicImage library="tema1" name="img/sesion.png" />
+						<p><span class="textDeco" >Iniciar Sesión</span></p>
+					</h:outputLink>
+					<h4 class="textReg" >¿No estas registrado?</h4>
+					<h:outputLink id="registerLink" value="javascript:void(0)"
+						onclick="PF('dlgRegis').show();" title="Registro" style="text-decoration:none;">
+						<p><span class="textDeco2" >Registrate</span></p>
+					</h:outputLink>
+				</div>
+
+			</p:card>
+		</center>
+		<p:dialog id="dialog" resizable="false" closable="false"
+			header="Credenciales" widgetVar="dlg" modal="true">
+			<h:form>
+				<h:panelGrid columns="2" cellpadding="10">
+					<h:outputLabel for="usuario" value="Usuario:" />
+					<p:inputText id="usuario" value="#{datosLogin.usuario}" required="true"
+						label="Usuario">
+					</p:inputText>
+					<h:outputLabel for="clave" value="Clave:" />
+					<p:password id="clave" value="#{datosLogin.clave}" required="true"
+						label="Clave">
+					</p:password>
+				</h:panelGrid>
+				<div style="text-align:center;">
+					<p:commandButton id="sesion" value="Enviar" style="margin-right:2rem;"
+						action="#{datosLogin.iniciarSesion}" update=":growl" />
+					<p:commandButton id="csesion" onclick="cerrarDialogo('dlg')" style="display:inline-block;"
+						value="Cerrar" />
+				</div>
+			</h:form>
+		</p:dialog>
+		<p:dialog id="dialogRegis" resizable="false" closable="false"
+			header="Registro" widgetVar="dlgRegis" modal="true">
+			<h:form>
+				<h:panelGrid columns="2" cellpadding="16">
+					<h:outputLabel for="usuarioR" value="Usuario:" />
+					<p:inputText id="usuarioR" value="#{datosRegis.usuario}" required="true"
+						label="Usuario" maxlength="13" >
+						<f:validateBean />
+					</p:inputText>
+					<h:outputLabel for="claveR" value="Clave:" />
+					<p:password id="claveR" value="#{datosRegis.clave}" required="true"
+						label="Clave" maxlength="15">
+						<f:validateBean />
+					</p:password>
+					<div style="word-break:break-word; width:10rem; display:inline-block; text-align:justify;" >
+						En caso de ser ADM escribir código de administración
+					</div>
+					<p:password id="claveADM" value="#{datosRegis.rol}" required="false"
+						label="Clave">
+						<f:validateBean />
+					</p:password>
+				</h:panelGrid>
+				<div style="text-align:center;">
+					<p:commandButton id="sesionR" value="Registrar" style="margin-right:2rem;"
+					 	action="#{datosRegis.Registrar}" update=":growl"  />
+					<p:button id="csesionR" onclick="cerrarDialogo('dlgRegis')" style="display:inline-block;"
+						value="Cerrar" update=":growl"/>
+				</div>
+			</h:form>
+		</p:dialog>
+	</div>
+	</h:body>
+</f:view>
+</html>

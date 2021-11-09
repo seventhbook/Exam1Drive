@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<h:panelGrid columns="3">
+		<h:outputLabel for="#{id}" value="#{label}" />
+		<ui:insert name="input" />
+		<h:message id="#{id}_message" for="#{id}" />
+	</h:panelGrid>
+	
+	<h:commandButton value="Enviar" action="#{principalBean.salto()}" />
+</ui:composition>

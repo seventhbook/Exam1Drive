@@ -1,0 +1,56 @@
+@charset "ISO-8859-1";
+/*Login */
+.bodyLogin{
+	
+	background-image:url("#{resource['tema1:img/space2Fond.jpg']}");
+	background-repeat: no-repeat;
+	background-position:fixed;
+	background-size: cover;
+}
+.bodyPanel{
+	background:rgba(255,255,255,0.2) !important;
+	display:flex;
+	size:cover;
+	align-items:center;
+	justify-content:center;
+	margin:-7px;
+	height:99.5vh;
+}
+
+.coLogin{
+	box-shadow: 0px 3px 8px white !important;
+	background:rgba(0,0,0,0.7) !important;
+}
+
+.textDeco{
+	color:rgba(255,255,255,1);
+	font-family: Delius, handwriting;
+    font-size: 2rem;
+    font-weight: 100;
+    text-transform: none;
+    font-style: normal;
+    letter-spacing: 0px;
+    text-shadow: 0px 0px 20px rgb(0, 255, 255, 1) , 0px 2px 5px rgb(0, 0, 0, 1);
+}
+
+
+/*Registro*/
+.textDeco2{
+	color:rgba(255,255,255,1);
+	font-family: Delius, handwriting;
+    font-size: 1.2rem;
+    font-weight: 100;
+    display:inline;
+    margin-top:22px;
+    margin-left:-15px;
+    float:right;
+    text-transform: none;
+    font-style: normal;
+    letter-spacing: 0px;
+    text-shadow: 0px 0px 20px rgb(0, 255, 255, 1) , 0px 2px 5px rgb(0, 0, 0, 1);
+}
+.textReg{
+	display:inline; 
+	float:left;
+	color:rgba(255,255,255,1) !important;
+}

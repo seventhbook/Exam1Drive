@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+	<h:body>
+		<ui:composition template="/Plantilla.xhtml">
+			<ui:define name="title">
+				<title>Subir y Bajar Archivos</title>
+				<h:outputStylesheet library="tema1" name="css/AutoCompletaBD.css" />
+			</ui:define>
+			<ui:define name="contenidoNF">
+				<p:growl />
+				<div style="text-align: center;">
+					<p:dialog modal="true" widgetVar="dialogo" header="Estado" 
+						draggable="false" closable="false" resizable="false">
+						<p:graphicImage library="tema1" name="img/barra_de_progreso.gif" />
+					</p:dialog>
+					<h:form id="f20" enctype="multipart/form-data">
+						<p:messages id="msg" showDetail="true" />
+						<p:fileUpload listener="#{subirArchBean.archivoArriba}" label="Seleccionar Archivo"
+							update=":imagen" allowTypes="/(\.|\/)(jpe?g)$/" multiple="false"  uploadLabel="Subir" 
+							cancelLabel="Cancelar" />
+					</h:form>
+<!-- 					<h:form id="f21"> -->
+<!-- 						<p:commandButton id="descarga" value="Bajar" ajax="false" -->
+<!-- 							onclick="PrimeFaces.monitorDownload(start,stop);"> -->
+
+<!-- 							<p:fileDownload value="#{subirArchBean.bajar}" /> -->
+
+<!-- 						</p:commandButton> -->
+<!-- 					</h:form> -->
+					<p:graphicImage cache="false" id="imagen" 
+						value="#{subirArchBean.imagen}" width="80%" height="400px" />
+				</div>
+
+				<script type="text/javascript">
+					function start() {
+						PF('dialogo').show();
+					}
+					function stop() {
+						PF('dialogo').hide();
+					}
+				</script>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

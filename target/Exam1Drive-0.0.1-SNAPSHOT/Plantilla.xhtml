@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+ 	<f:event type="preRenderView" listener="#{verificar.verificarSesion}" /> 
+	<ui:insert name="eventos" />
+	<h:head>
+		<h:outputStylesheet library="tema1" name="css/miestilo.css" />
+		<h:outputStylesheet library="tema1" name="css/primeflex/primeflex.css" />
+		<h:outputStylesheet library="tema1" name="css/primeflex/layout.css" />
+		<h:outputStylesheet library="bootstrap" name="css/bootstrap.css" />
+		<h:outputScript library="bootstrap" name="js/bootstrap.js"/>
+		<ui:insert name="title" />
+	</h:head>
+	<h:body>
+	<p:panel styleClass="body" style="margin:-1vw -1vw 0vh !important; ">
+		<p:row>
+		<nav class="Header navbar navbar-dark bg-dark  mb-2">
+			<div class="container-fluid">
+				<h:link class="navbar-brand" update=":contenido" outcome="/xhtml/Principal.xhtml"> 
+				<h:graphicImage
+						value="/resources/tema1/img/logofesaragon.png"  styleClass="logo" /> 
+						<span class="titulo-header">Facultad de Estudios Superiores Aragón</span>
+				</h:link>
+				<h:form>
+					<p:commandLink title="Cerrar Sesión"
+					action="#{usuario.cerrarSesion}">
+<!-- 							<h:graphicImage -->
+<!-- 							value="/resources/tema1/img/logout.png"  styleClass="logout" />  -->
+							<p:avatar styleClass="logout" size="xlarge" >
+                				<p:graphicImage value="/resources/tema1/img/logout.png" />
+            				</p:avatar>
+					</p:commandLink>
+				</h:form>
+			</div>
+		</nav>
+		</p:row>
+		<p:row>
+			<p:splitter style="height: 87.5vh; overflow-y:auto;" >
+				<p:splitterPanel styleClass="p-d-flex p-ai-center p-jc-center"
+					size="25" minSize="15" style="overflow-y:scroll;">
+					<div id="menu" class="p-d-flex p-jc-center" style="padding:2%;">
+						<h:form>
+							<ui:include src="/xhtml/Menu.xhtml"/>
+						</h:form>
+					</div>
+				</p:splitterPanel>
+				<p:splitterPanel styleClass="p-d-flex p-ai-center p-jc-center"
+					size="75" minSize="50"  style="overflow-y:scroll;">
+					<div id="contenido" style="padding:2%;">
+						<h:form id="f001">
+							<ui:insert name="contenido" />
+						</h:form>
+						<ui:insert name="contenidoNF" />
+					</div>
+				</p:splitterPanel>
+			</p:splitter>
+		
+		</p:row>
+	</p:panel>
+	</h:body>
+</f:view>
+</html>
