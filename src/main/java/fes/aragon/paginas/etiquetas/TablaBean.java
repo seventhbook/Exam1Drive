@@ -1,17 +1,16 @@
 package fes.aragon.paginas.etiquetas;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import org.primefaces.model.DefaultStreamedContent;
@@ -22,23 +21,36 @@ import fes.aragon.utilerias.Utilerias;
 
 @Named("tablaBean")
 @RequestScoped
-public class TablaBean {
+public class TablaBean implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private StreamedContent imagen = null;
 	private String destino = "C:\\AppServers\\temp\\";
 	private StreamedContent bajar;
+	private Map<String,StreamedContent> imagenes =new HashMap<String,StreamedContent>();
 	private Usuario usr=null;
 	private String nombre;
 
 	// private StreamedContent imagen;
 	@PostConstruct
 	public void inicio() {
-		usr = (Usuario) Utilerias.getManagedBean("usuario", Usuario.class);
-		//ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+		usr = (Usuario) Utilerias.getManagedBean("usuario", Usuario.class);	
+		System.out.println(usr.getImagenes().toString());
+		imagenes=usr.getImagenes();
+		System.out.println(imagenes.toString());
+		usr.rellenaImgs();
 	}
 
 	public TablaBean() {
 		
+	}
+
+
+	public StreamedContent obtImg(String nombre) {
+		StreamedContent aux=imagenes.get(nombre);
+		if(aux==null)
+			System.out.println("Esta nula la imagen no encontre en el map "+nombre);
+		return imagenes.get(nombre);
 	}
 	
 	public void setNombre(String nombre) {
@@ -80,6 +92,7 @@ public class TablaBean {
 							return new FileInputStream(destino+usr.getCarpeta()+"\\"+nombre);
 						} catch (FileNotFoundException e) {
 							// TODO Auto-generated catch block
+							System.out.println("No encontre la imagen"+nombre);
 							e.printStackTrace();
 						}
 						return null;

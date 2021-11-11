@@ -52,6 +52,7 @@ public class Conexion {
 							if(resultado.getString(5)!=null)
 								datos.getArchivos().add(resultado.getString(5));
 						}while(resultado.next());
+						datos.rellenaImgs(); //rellenamos las imagenes del bean de sesion
 					}
 				} catch (Exception ex) {
 					ex.printStackTrace();

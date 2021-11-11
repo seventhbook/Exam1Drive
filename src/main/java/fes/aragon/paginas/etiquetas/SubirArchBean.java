@@ -87,7 +87,7 @@ public class SubirArchBean {
 			//Agregamos a la lista de archivos del bean usuario el archivo o imagen subida
 			//evitando tener que estar consultando a la base de datos, que sabemos ya se actualizo arriba.
 			usr.getArchivos().add(event.getFile().getFileName());
-			
+			usr.rellenaImgs();//rellenamos denuevo las imagenes por subir una mas
 			
 		} catch (IOException e) {
 			e.printStackTrace();

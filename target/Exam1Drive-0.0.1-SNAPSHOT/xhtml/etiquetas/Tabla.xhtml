@@ -8,26 +8,30 @@
 	<h:body>
 		<ui:composition template="/Plantilla.xhtml">
 			<ui:define name="title">
-				<title>Selección BD</title>
+				<title>Imagenes Disponibles</title>
 				<h:outputStylesheet library="tema1" name="css/AutoCompletaBD.css" />
 			</ui:define>
 			<ui:define name="contenidoNF">
+				<p:growl id="growl"></p:growl>
 				<p:panel header="Imagenes Disponibles">
-					<p:dataTable id="tabla" var="img" value="#{usuario.getArchivos()}"
-						paginator="true" rows="4">
+					<p:dataTable id="tabla" var="img" value="#{usuario.getImagenes().values()}"
+						paginator="true" rows="3" multiViewState="true" >
 						<p:column width="30%" >
 							<f:facet name="header">
 								<h:outputText value="Nombre" />
 							</f:facet>
-							<h:outputText value="#{img}" />
+							<h:outputText value="#{img.getName()}" />
 						</p:column>
 						<p:column width="30%" style="text-align:center;">
 							<f:facet name="header">
 								<h:outputText value="Imagen" />
 							</f:facet>
 							<h:form id="f2">
+								<p:graphicImage value="#{img}" stream="false" 
+								cache="false" width="80" style="margin-bottom:10px;"/>
+								<br />
 								<p:commandButton id="preview" value="Previsualizar" update=":img001"
-									onclick="PF('dlg').show();"  action="#{tablaBean.setNombre(img)}">
+									onclick="PF('dlg').show();"  action="#{tablaBean.setNombre(img.getName())}">
 								</p:commandButton>
 							</h:form>
 						</p:column>
@@ -45,7 +49,7 @@
 				<p:dialog id="dialog" resizable="false" closable="True"
 					header="Previsualización Imagen" widgetVar="dlg" modal="true" style="text-align:center">
 					<p:graphicImage id="img001" value="#{tablaBean.imagen}" 
-								cache="false" style="width:40vw; height:60vh; margin-bottom:10px;"/>
+								cache="false" style="width:40vw; height:60vh; margin-bottom:10px;" />
 					<br />
 					<p:button id="csesionR" onclick="PF('dlg').hide();" 
 						value="Cerrar" update=":growl"/>
