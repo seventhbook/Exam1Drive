@@ -33,7 +33,6 @@ public class SubirArchBean {
 	private String destino = "C:\\AppServers\\temp\\";
 	private String dato;
 	private boolean descarga = false;
-	private StreamedContent bajar;
 
 	// private StreamedContent imagen;
 	@PostConstruct
@@ -107,7 +106,7 @@ public class SubirArchBean {
 	public void copiar(String nombreArchivo, InputStream datos) {
 		Usuario usr = (Usuario) Utilerias.getManagedBean("usuario", Usuario.class);
 		try {
-			OutputStream salida = new FileOutputStream(new File("C:\\AppServers\\temp\\"+usr.getCarpeta()+"\\"+ nombreArchivo));
+			OutputStream salida = new FileOutputStream(new File(destino+usr.getCarpeta()+"\\"+ nombreArchivo));
 			int leer = 0;
 			byte[] bytes = new byte[1024];
 			while ((leer = datos.read(bytes)) != -1) {
@@ -133,21 +132,6 @@ public class SubirArchBean {
 		this.imagen = imagen;
 	}
 
-	public StreamedContent getBajar() {
-		if (dato != null) {
-			bajar = imagen = DefaultStreamedContent.builder().contentType("image/jpeg")
-					.name("imagen.jpg").stream(() -> {
-						try {
-							return new FileInputStream(dato);
-						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						return null;
-					}).build();
-		}
-		return bajar;
-	}
 
 	public boolean isDescarga() {
 		return descarga;

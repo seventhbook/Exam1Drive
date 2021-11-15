@@ -24,7 +24,7 @@ public class Filtro implements Filter{
 		HttpSession sesion = req.getSession();
 		Usuario registro = (Usuario) sesion.getAttribute("usuario");
 		if (registro == null) {
-			res.sendRedirect("/Exam1Drive/");
+			res.sendRedirect("/Exam1Drive/Login.jsf");
 		} else {
 			chain.doFilter(request, response);
 		}

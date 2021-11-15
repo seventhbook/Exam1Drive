@@ -5,6 +5,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+	<f:event type="preRenderView" listener="#{verificar.verificarSesion}" />
 	<h:head>
 		<title>Iniciar Sesión</title>
 		<h:outputScript library="tema1" name="js/eventos.js" />

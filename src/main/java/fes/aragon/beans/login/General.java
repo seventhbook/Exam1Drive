@@ -14,10 +14,10 @@ public class General {
 	
 	public void verificarSesion() {
 		Usuario usr = (Usuario) Utilerias.getManagedBean("usuario", Usuario.class);
-		if (usr == null) {
+		if (usr != null) {
 			ConfigurableNavigationHandler salto = (ConfigurableNavigationHandler) FacesContext.getCurrentInstance()
 					.getApplication().getNavigationHandler();
-			salto.performNavigation("/index?faces-redirect=true");
+			salto.performNavigation("/xhtml/Principal?faces-redirect=true");
 		}
 	}
 	public void verificarRol() {

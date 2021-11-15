@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
 	<h:body>
-		<ui:composition template="/Plantilla.xhtml">
+		<ui:composition template="/xhtml/Plantilla.xhtml">
 			<ui:define name="title">
 				<title>Subir y Bajar Archivos</title>
 				<h:outputStylesheet library="tema1" name="css/AutoCompletaBD.css" />
@@ -24,14 +24,6 @@
 							update=":imagen" allowTypes="/(\.|\/)(jpe?g)$/" multiple="false"  uploadLabel="Subir" 
 							cancelLabel="Cancelar" />
 					</h:form>
-<!-- 					<h:form id="f21"> -->
-<!-- 						<p:commandButton id="descarga" value="Bajar" ajax="false" -->
-<!-- 							onclick="PrimeFaces.monitorDownload(start,stop);"> -->
-
-<!-- 							<p:fileDownload value="#{subirArchBean.bajar}" /> -->
-
-<!-- 						</p:commandButton> -->
-<!-- 					</h:form> -->
 					<p:graphicImage cache="false" id="imagen" 
 						value="#{subirArchBean.imagen}" width="80%" height="400px" />
 				</div>

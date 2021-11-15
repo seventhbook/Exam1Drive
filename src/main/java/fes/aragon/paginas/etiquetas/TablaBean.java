@@ -45,13 +45,6 @@ public class TablaBean implements Serializable{
 		
 	}
 
-
-	public StreamedContent obtImg(String nombre) {
-		StreamedContent aux=imagenes.get(nombre);
-		if(aux==null)
-			System.out.println("Esta nula la imagen no encontre en el map "+nombre);
-		return imagenes.get(nombre);
-	}
 	
 	public void setNombre(String nombre) {
 		Utilerias.setManagedBeanInSession("archivo", nombre);

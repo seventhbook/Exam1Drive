@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
 	<h:body>
-		<ui:composition template="/Plantilla.xhtml">
+		<ui:composition template="/xhtml/Plantilla.xhtml">
 			<ui:define name="title">
 				<title>Imagenes Disponibles</title>
 				<h:outputStylesheet library="tema1" name="css/AutoCompletaBD.css" />
@@ -15,7 +15,7 @@
 				<p:growl id="growl"></p:growl>
 				<p:panel header="Imagenes Disponibles">
 					<p:dataTable id="tabla" var="img" value="#{usuario.getImagenes().values()}"
-						paginator="true" rows="3" multiViewState="true" >
+						paginator="true" rows="3" clientCache="true">
 						<p:column width="30%" >
 							<f:facet name="header">
 								<h:outputText value="Nombre" />
@@ -40,7 +40,7 @@
 							<h:form id="f21">
 								<p:commandButton id="descarga" value="Descargar" ajax="false"
 									onclick="PrimeFaces.monitorDownload(start,stop);">
-									<p:fileDownload value="#{tablaBean.bajar(img)}" />
+									<p:fileDownload value="#{tablaBean.bajar(img.getName())}" />
 								</p:commandButton>
 							</h:form>
 						</p:column>
@@ -48,7 +48,7 @@
 				</p:panel>
 				<p:dialog id="dialog" resizable="false" closable="True"
 					header="Previsualización Imagen" widgetVar="dlg" modal="true" style="text-align:center">
-					<p:graphicImage id="img001" value="#{tablaBean.imagen}" 
+					<p:graphicImage id="img001" value="#{tablaBean.imagen}"
 								cache="false" style="width:40vw; height:60vh; margin-bottom:10px;" />
 					<br />
 					<p:button id="csesionR" onclick="PF('dlg').hide();" 

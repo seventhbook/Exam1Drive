@@ -4,7 +4,6 @@ fes\aragon\utilerias\Utilerias.class
 fes\aragon\paginas\etiquetas\SubirArchBean.class
 fes\aragon\beans\login\Credenciales.class
 fes\aragon\paginas\etiquetas\TablaBean.class
-fes\aragon\paginas\etiquetas\SubirArchivoBean.class
 fes\aragon\conexion\Conexion.class
 fes\aragon\modelo\Usuario.class
 fes\aragon\utilerias\Filtro.class

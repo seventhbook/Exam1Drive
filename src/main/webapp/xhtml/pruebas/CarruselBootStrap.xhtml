@@ -5,10 +5,10 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:body>
-	<ui:composition template="/Plantilla.xhtml">
-		
+	<ui:composition template="/xhtml/Plantilla.xhtml">
 		<ui:define name="title">
 			<title>CarruselBootStrap</title>
+			<f:event type="preRenderView" listener="#{verificar.verificarRol}" />
 		</ui:define>
 		<ui:define name="contenidoNF">
 			<div id="carouselExampleControls" class="carousel slide"
